@@ -16,9 +16,9 @@ cfg_if! {
     }
 }
 
-const MAGNIFICATION: u32 = 200;
-const PAN_X: f64 = 2.0;
-const PAN_Y: f64 = 1.5;
+const MAGNIFICATION: u32 = 400;
+const PAN_X: f64 = 1.8;
+const PAN_Y: f64 = 1.3;
 
 #[wasm_bindgen]
 pub struct Mandelbrot {
