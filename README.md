@@ -1,54 +1,43 @@
-<meta charset="utf-8"/>
+# rust-wasm-mandelbrot
 
-# 🦀🕸️ `wasm-pack-template`
+Draw the Mandelbrot fractal using Rust compiled to WebAssembly!
 
-A template for kick starting a Rust and WebAssembly project using
-[`wasm-pack`](https://github.com/rustwasm/wasm-pack).
+## Requirements
 
-This template is designed for compiling Rust libraries into WebAssembly and
-publishing the resulting package to NPM.
+- Node v11.2
+- NPM 6.4
+- Rust 1.30.0-beta.16
+- wasm-pack 0.5.1 (see https://github.com/rustwasm/wasm-pack)
 
-* Want to use the published NPM package in a Website? [Check out
-  `create-wasm-app`.](https://github.com/rustwasm/create-wasm-app)
-* Want to make a monorepo-style Website without publishing to NPM? Check out
-  [`rust-webpack-template`](https://github.com/rustwasm/rust-webpack-template)
-  and/or
-  [`rust-parcel-template`](https://github.com/rustwasm/rust-parcel-template).
+## Running This Project
 
-## 🔋 Batteries Included
+First, make sure all your dependencies are installed and at the correct version.
 
-* [`wasm-bindgen`](https://github.com/rustwasm/wasm-bindgen) for communicating
-  between WebAssembly and JavaScript.
-* [`console_error_panic_hook`](https://github.com/rustwasm/console_error_panic_hook)
-  for logging panic messages to the developer console.
-* [`wee_alloc`](https://github.com/rustwasm/wee_alloc), an allocator optimized
-  for small code size.
+Then, clone this repository:
 
-## 🚴 Usage
+    $ git clone https://github.com/s3thi/rust-wasm-mandelbrot
 
-### 🐑 Use `cargo generate` to Clone this Template
+Build the WASM module using `wasm-pack`:
 
-[Learn more about `cargo generate` here.](https://github.com/ashleygwilliams/cargo-generate)
+    $ cd rust-wasm-mandelbrot/
+    $ wasm-pack build
 
-```
-cargo generate --git https://github.com/rustwasm/wasm-pack-template.git --name my-project
-cd my-project
-```
+The generated WASM module, along with some glue JavaScript code and TypeScript type definitions, will be placed in the `pkg/` directory. Make it available as an NPM module:
 
-### 🛠️ Build with `wasm-pack build`
+    $ cd pkg/
+    $ npm link
 
-```
-wasm-pack build
-```
+Then, go into the `www/` directory and install all the Node dependencies:
 
-### 🔬 Test in Headless Browsers with `wasm-pack test`
+    $ cd ../www/
+    $ npm i
 
-```
-wasm-pack test --headless --firefox
-```
+Link the NPM package containing the WASM module:
 
-### 🎁 Publish to NPM with `wasm-pack publish`
+    $ npm link rust-wasm-mandelbrot
 
-```
-wasm-pack publish
-```
+Run the project:
+
+    $ npm start
+
+If everything went well, going to http://localhost:8080 should give you an image of the Mandelbrot fractal!
